@@ -18,10 +18,10 @@ const GridPostList = ({
   const { user } = useUserContext();
 
   return (
-    <ul className="grid-container">
+    <ul className="grid-container dj-grid-container">
       {posts.map((post) => (
-        <li key={post.$id} className="relative min-w-80 h-80">
-          <Link to={`/posts/${post.$id}`} className="grid-post_link">
+        <li key={post.$id} className="relative min-w-80 h-80 ">
+          <Link to={`/posts/${post.$id}`} className="grid-post_link dj-post">
             <img
               src={post.imageUrl}
               alt="post"

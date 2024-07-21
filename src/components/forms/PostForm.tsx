@@ -92,7 +92,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
               <FormLabel className="shad-form_label">Caption</FormLabel>
               <FormControl>
                 <Textarea
-                  className="shad-textarea custom-scrollbar"
+                  className="shad-textarea custom-scrollbar dj-caption-textarea"
                   {...field}
                 />
               </FormControl>
@@ -106,7 +106,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="file"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">Add Photos</FormLabel>
+              <FormLabel className="shad-form_label ">Add Photos</FormLabel>
               <FormControl>
                 <FileUploader
                   fieldChange={field.onChange}
@@ -125,7 +125,11 @@ const PostForm = ({ post, action }: PostFormProps) => {
             <FormItem>
               <FormLabel className="shad-form_label">Add Location</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" {...field} />
+                <Input
+                  type="text"
+                  className="shad-input dj-location-input"
+                  {...field}
+                />
               </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
@@ -144,7 +148,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                 <Input
                   placeholder="Art, Expression, Learn"
                   type="text"
-                  className="shad-input"
+                  className="shad-input dj-tags-input"
                   {...field}
                 />
               </FormControl>
@@ -162,7 +166,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
           </Button>
           <Button
             type="submit"
-            className="shad-button_primary whitespace-nowrap"
+            className="shad-button_primary whitespace-nowrap dj-submit-btn"
             disabled={isLoadingCreate || isLoadingUpdate}>
             {(isLoadingCreate || isLoadingUpdate) && <Loader />}
             {action} Post

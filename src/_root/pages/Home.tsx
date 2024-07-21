@@ -3,7 +3,7 @@ import { Models } from "appwrite";
 // import { useToast } from "@/components/ui/use-toast";
 import { Loader, PostCard, UserCard } from "@/components/shared";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queries";
-
+import { driverObj } from "@/driver/driver";
 const Home = () => {
   // const { toast } = useToast();
 
@@ -50,8 +50,18 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home-creators">
-        <h3 className="h3-bold text-light-1">Top Creators</h3>
+      <div className="home-creators dj-top-creators">
+        <div className="flex row justify-between">
+          <h3 className="h3-bold text-light-1">Top Creators</h3>
+          <img
+            data-tooltip-target="tooltip-default"
+            src="/assets/icons/intro.svg"
+            className="cursor-pointer "
+            alt="logo"
+            onClick={() => driverObj.drive()}
+          />
+        </div>
+
         {isUserLoading && !creators ? (
           <Loader />
         ) : (

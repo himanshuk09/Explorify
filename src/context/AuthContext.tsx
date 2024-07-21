@@ -35,8 +35,7 @@ const AuthContext = createContext<IContextType>(INITIAL_STATE);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
-  // const [user, setUser] = useState<IUser>(INITIAL_USER);
-  const [user, setUser] = useState<any>(INITIAL_USER);
+  const [user, setUser] = useState<IUser>(INITIAL_USER);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

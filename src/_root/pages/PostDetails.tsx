@@ -52,14 +52,14 @@ const PostDetails = () => {
       {isLoading || !post ? (
         <Loader />
       ) : (
-        <div className="post_details-card">
+        <div className="post_details-card dj-post-details">
           <img
             src={post?.imageUrl}
             alt="creator"
             className="post_details-img"
           />
 
-          <div className="post_details-info">
+          <div className="post_details-info ">
             <div className="flex-between w-full">
               <Link
                 to={`/profile/${post?.creator.$id}`}
