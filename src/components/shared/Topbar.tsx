@@ -4,19 +4,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useSignOutAccount } from "@/lib/react-query/queries";
-import { driverObj } from "@/driver/driver";
+import { driverObj_mini } from "@/driver/driver";
 
 const Topbar = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
+  const [showModeTooltip, setModeShowTooltip] = useState(false);
+  const [showLogoutTooltip, setLogoutShowTooltip] = useState(false);
+
+  const [showDriverTooltip, setDriverShowTooltip] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [modeLogo, setModeLogo] = useState(true);
+
   const { mutate: signOut, isSuccess } = useSignOutAccount();
 
   useEffect(() => {
     if (isSuccess) navigate(0);
   }, [isSuccess]);
-
-  const [darkMode, setDarkMode] = useState(false);
-  const [modeLogo, setModeLogo] = useState(true);
 
   const toggleDarkMode = () => {
     if (darkMode) {
@@ -67,37 +71,68 @@ const Topbar = () => {
         </Link>
 
         <div className="flex gap-4">
-          {modeLogo ? (
+          <div className="relative pt-2">
+            {modeLogo ? (
+              <img
+                data-tooltip-target="tooltip-default"
+                src="/assets/icons/dark-mode.svg"
+                className="cursor-pointer "
+                alt="logo"
+                onClick={toggleDarkMode}
+                onMouseEnter={() => setModeShowTooltip(true)}
+                onMouseLeave={() => setModeShowTooltip(false)}
+              />
+            ) : (
+              <img
+                data-tooltip-target="tooltip-default"
+                src="/assets/icons/light-mode.svg"
+                className="cursor-pointer "
+                alt="logo"
+                onClick={toggleDarkMode}
+                onMouseEnter={() => setModeShowTooltip(true)}
+                onMouseLeave={() => setModeShowTooltip(false)}
+              />
+            )}
+            {showModeTooltip && (
+              <div className="tooltip bg-black text-white text-xs rounded py-1 px-2 absolute top-0 left-0 ml-6 mt-6">
+                Dark Mode
+              </div>
+            )}
+          </div>
+          <div className="relative pt-2">
             <img
               data-tooltip-target="tooltip-default"
-              src="/assets/icons/dark-mode.svg"
+              src="/assets/icons/intro.svg"
               className="cursor-pointer "
               alt="logo"
-              onClick={toggleDarkMode}
+              onClick={() => driverObj_mini.drive()}
+              onMouseEnter={() => setDriverShowTooltip(true)}
+              onMouseLeave={() => setDriverShowTooltip(false)}
             />
-          ) : (
-            <img
-              data-tooltip-target="tooltip-default"
-              src="/assets/icons/light-mode.svg"
-              className="cursor-pointer "
-              alt="logo"
-              onClick={toggleDarkMode}
-            />
-          )}
-          <img
-            data-tooltip-target="tooltip-default"
-            src="/assets/icons/intro.svg"
-            className="cursor-pointer "
-            alt="logo"
-            onClick={() => driverObj.drive()}
-          />
-          <Button
-            variant="ghost"
-            className="shad-button_ghost"
-            onClick={() => signOut()}>
-            <img src="/assets/icons/logout.svg" alt="logout" />
-          </Button>
-          <Link to={`/profile/${user.id}`} className="flex-center gap-3">
+            {showDriverTooltip && (
+              <div className="tooltip bg-black text-white text-xs rounded py-1 px-2 absolute top-0 left-0 ml-6 mt-6">
+                Guide
+              </div>
+            )}
+          </div>
+          <div className="relative">
+            <Button
+              variant="ghost"
+              className="shad-button_ghost dj-logout-link"
+              onClick={() => signOut()}
+              onMouseEnter={() => setLogoutShowTooltip(true)}
+              onMouseLeave={() => setLogoutShowTooltip(false)}>
+              <img src="/assets/icons/logout.svg" alt="logout" />
+            </Button>
+            {showLogoutTooltip && (
+              <div className="tooltip bg-black text-white text-xs rounded py-1 px-2 absolute top-0 left-0 ml-6 mt-6">
+                Logout
+              </div>
+            )}
+          </div>
+          <Link
+            to={`/profile/${user.id}`}
+            className="flex-center gap-3 dj-profile">
             <img
               src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
               alt="profile"

@@ -8,6 +8,10 @@ import { useState } from "react";
 const Home = () => {
   // const { toast } = useToast();
   const [modeLogo, setModeLogo] = useState(true);
+  const [showModeTooltip, setModeShowTooltip] = useState(false);
+  const [showDriverTooltip, setDriverShowTooltip] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
   const {
     data: posts,
     isLoading: isPostLoading,
@@ -31,7 +35,6 @@ const Home = () => {
       </div>
     );
   }
-  const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     if (darkMode) {
@@ -77,30 +80,50 @@ const Home = () => {
             Top Creators
           </h3>
           <div className="flex row justify-between w-[20%]">
-            {modeLogo ? (
+            <div className="relative pt-2">
+              {modeLogo ? (
+                <img
+                  data-tooltip-target="tooltip-default"
+                  src="/assets/icons/dark-mode.svg"
+                  className="cursor-pointer "
+                  alt="logo"
+                  onClick={toggleDarkMode}
+                  onMouseEnter={() => setModeShowTooltip(true)}
+                  onMouseLeave={() => setModeShowTooltip(false)}
+                />
+              ) : (
+                <img
+                  data-tooltip-target="tooltip-default"
+                  src="/assets/icons/light-mode.svg"
+                  className="cursor-pointer "
+                  alt="logo"
+                  onClick={toggleDarkMode}
+                  onMouseEnter={() => setModeShowTooltip(true)}
+                  onMouseLeave={() => setModeShowTooltip(false)}
+                />
+              )}
+              {showModeTooltip && (
+                <div className="tooltip bg-black text-white text-xs rounded py-1 px-2 absolute top-0 left-0 ml-6 mt-6">
+                  Dark Mode
+                </div>
+              )}
+            </div>
+            <div className="relative pt-2">
               <img
                 data-tooltip-target="tooltip-default"
-                src="/assets/icons/dark-mode.svg"
+                src="/assets/icons/intro.svg"
                 className="cursor-pointer "
                 alt="logo"
-                onClick={toggleDarkMode}
+                onClick={() => driverObj.drive()}
+                onMouseEnter={() => setDriverShowTooltip(true)}
+                onMouseLeave={() => setDriverShowTooltip(false)}
               />
-            ) : (
-              <img
-                data-tooltip-target="tooltip-default"
-                src="/assets/icons/light-mode.svg"
-                className="cursor-pointer "
-                alt="logo"
-                onClick={toggleDarkMode}
-              />
-            )}
-            <img
-              data-tooltip-target="tooltip-default"
-              src="/assets/icons/intro.svg"
-              className="cursor-pointer "
-              alt="logo"
-              onClick={() => driverObj.drive()}
-            />
+              {showDriverTooltip && (
+                <div className="tooltip bg-black text-white text-xs rounded py-1 px-2 absolute top-0 left-0 ml-6 mt-6">
+                  Guide
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

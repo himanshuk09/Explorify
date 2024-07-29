@@ -36,24 +36,24 @@ export const bottombarLinks = [
     imgURL: "/assets/icons/home.svg",
     route: "/",
     label: "Home",
-    className: "dj-home",
+    className: "dj-home_mini",
   },
   {
     imgURL: "/assets/icons/wallpaper.svg",
     route: "/explore",
     label: "Explore",
-    className: "dj-explore",
+    className: "dj-explore_mini",
   },
   {
     imgURL: "/assets/icons/bookmark.svg",
     route: "/saved",
     label: "Saved",
-    className: "dj-saved",
+    className: "dj-saved_mini",
   },
   {
     imgURL: "/assets/icons/gallery-add.svg",
     route: "/create-post",
     label: "Create",
-    className: "dj-create",
+    className: "dj-create-post_mini",
   },
 ];
