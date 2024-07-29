@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useSignOutAccount } from "@/lib/react-query/queries";
+import { driverObj } from "@/driver/driver";
 
 const Topbar = () => {
   const navigate = useNavigate();
@@ -14,19 +15,82 @@ const Topbar = () => {
     if (isSuccess) navigate(0);
   }, [isSuccess]);
 
+  const [darkMode, setDarkMode] = useState(false);
+  const [modeLogo, setModeLogo] = useState(true);
+
+  const toggleDarkMode = () => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+    setDarkMode(!darkMode);
+    setModeLogo(!modeLogo);
+  };
+  (function () {
+    const savedTheme = localStorage.getItem("theme");
+    console.log("called");
+    console.log(savedTheme);
+    if (savedTheme) {
+      document.documentElement.classList.add(savedTheme);
+    }
+  })();
+  const savedTheme = localStorage.getItem("theme");
+
   return (
     <section className="topbar">
       <div className="flex-between py-4 px-5">
         <Link to="/" className="flex gap-3 items-center">
-          <img
+          {/* <img
             src="/assets/images/logo.svg"
             alt="logo"
             width={130}
             height={325}
-          />
+          /> */}
+          {savedTheme == "dark" ? (
+            <img
+              src="/assets/images/logo.svg"
+              alt="logo"
+              width={130}
+              height={325}
+            />
+          ) : (
+            <img
+              src="/assets/images/logo-white.svg"
+              alt="logo"
+              width={130}
+              height={325}
+            />
+          )}
         </Link>
 
         <div className="flex gap-4">
+          {modeLogo ? (
+            <img
+              data-tooltip-target="tooltip-default"
+              src="/assets/icons/dark-mode.svg"
+              className="cursor-pointer "
+              alt="logo"
+              onClick={toggleDarkMode}
+            />
+          ) : (
+            <img
+              data-tooltip-target="tooltip-default"
+              src="/assets/icons/light-mode.svg"
+              className="cursor-pointer "
+              alt="logo"
+              onClick={toggleDarkMode}
+            />
+          )}
+          <img
+            data-tooltip-target="tooltip-default"
+            src="/assets/icons/intro.svg"
+            className="cursor-pointer "
+            alt="logo"
+            onClick={() => driverObj.drive()}
+          />
           <Button
             variant="ghost"
             className="shad-button_ghost"

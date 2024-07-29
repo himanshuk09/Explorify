@@ -32,7 +32,7 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
   return (
     <div
       {...getRootProps()}
-      className="flex flex-center flex-col bg-dark-3 rounded-xl cursor-pointer dj-file-upload">
+      className="flex flex-center flex-col dark:border-gray dark:bg-dark-3  bg-slate-100 rounded-xl cursor-pointer dj-file-upload">
       <input {...getInputProps()} className="cursor-pointer" />
 
       {fileUrl ? (
@@ -43,7 +43,7 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
           <p className="file_uploader-label">Click or drag photo to replace</p>
         </>
       ) : (
-        <div className="file_uploader-box ">
+        <div className="file_uploader-box  ">
           <img
             src="/assets/icons/file-upload.svg"
             width={96}

@@ -23,17 +23,33 @@ const LeftSidebar = () => {
     setUser(INITIAL_USER);
     navigate("/sign-in");
   };
+  const savedTheme = localStorage.getItem("theme");
 
   return (
-    <nav className="leftsidebar">
+    <nav className="leftsidebar ">
       <div className="flex flex-col gap-11">
         <Link to="/" className="flex gap-3 items-center">
-          <img
+          {/* <img
             src="/assets/images/logo.svg"
             alt="logo"
             width={170}
             height={36}
-          />
+          /> */}
+          {savedTheme == "dark" ? (
+            <img
+              src="/assets/images/logo.svg"
+              alt="logo"
+              width={170}
+              height={36}
+            />
+          ) : (
+            <img
+              src="/assets/images/logo-white.svg"
+              alt="logo"
+              width={170}
+              height={36}
+            />
+          )}
         </Link>
 
         {isLoading || !user.email ? (

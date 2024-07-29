@@ -4,9 +4,10 @@ import { Models } from "appwrite";
 import { Loader, PostCard, UserCard } from "@/components/shared";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queries";
 import { driverObj } from "@/driver/driver";
+import { useEffect, useState } from "react";
 const Home = () => {
   // const { toast } = useToast();
-
+  const [modeLogo, setModeLogo] = useState(true);
   const {
     data: posts,
     isLoading: isPostLoading,
@@ -30,7 +31,27 @@ const Home = () => {
       </div>
     );
   }
+  const [darkMode, setDarkMode] = useState(false);
 
+  const toggleDarkMode = () => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+    setDarkMode(!darkMode);
+    setModeLogo(!modeLogo);
+  };
+  (function () {
+    const savedTheme = localStorage.getItem("theme");
+    console.log("called");
+    console.log(savedTheme);
+    if (savedTheme) {
+      document.documentElement.classList.add(savedTheme);
+    }
+  })();
   return (
     <div className="flex flex-1">
       <div className="home-container">
@@ -51,15 +72,36 @@ const Home = () => {
       </div>
 
       <div className="home-creators dj-top-creators">
-        <div className="flex row justify-between">
-          <h3 className="h3-bold text-light-1">Top Creators</h3>
-          <img
-            data-tooltip-target="tooltip-default"
-            src="/assets/icons/intro.svg"
-            className="cursor-pointer "
-            alt="logo"
-            onClick={() => driverObj.drive()}
-          />
+        <div className="flex row justify-around">
+          <h3 className="h3-bold text-dark-1 dark:text-light-1">
+            Top Creators
+          </h3>
+          <div className="flex row justify-between w-[20%]">
+            {modeLogo ? (
+              <img
+                data-tooltip-target="tooltip-default"
+                src="/assets/icons/dark-mode.svg"
+                className="cursor-pointer "
+                alt="logo"
+                onClick={toggleDarkMode}
+              />
+            ) : (
+              <img
+                data-tooltip-target="tooltip-default"
+                src="/assets/icons/light-mode.svg"
+                className="cursor-pointer "
+                alt="logo"
+                onClick={toggleDarkMode}
+              />
+            )}
+            <img
+              data-tooltip-target="tooltip-default"
+              src="/assets/icons/intro.svg"
+              className="cursor-pointer "
+              alt="logo"
+              onClick={() => driverObj.drive()}
+            />
+          </div>
         </div>
 
         {isUserLoading && !creators ? (
