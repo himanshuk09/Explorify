@@ -4,7 +4,7 @@ import { Models } from "appwrite";
 import { Loader, PostCard, UserCard } from "@/components/shared";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queries";
 import { driverObj } from "@/driver/driver";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const Home = () => {
   // const { toast } = useToast();
   const [modeLogo, setModeLogo] = useState(true);
