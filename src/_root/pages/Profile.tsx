@@ -89,7 +89,7 @@ const Profile = () => {
                 </p>
               </Link>
             </div>
-            <div className={`${user.id === id && "hidden"}`}>
+            <div className={`${user?.id === id && "hidden"}`}>
               <Button
                 type="button"
                 className="shad-button_primary px-8 focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
@@ -136,7 +136,7 @@ const Profile = () => {
           index
           element={<GridPostList posts={currentUser.posts} showUser={false} />}
         />
-        {currentUser.$id === user.id && (
+        {currentUser?.$id === user?.id && (
           <Route path="/liked-posts" element={<LikedPosts />} />
         )}
       </Routes>
