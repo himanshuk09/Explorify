@@ -1,16 +1,24 @@
 import { useToast } from "@/components/ui/use-toast";
 import { Loader, UserCard } from "@/components/shared";
 import { useGetUsers } from "@/lib/react-query/queries";
+import { useUserContext } from "@/context/AuthContext";
 
 const AllUsers = () => {
   const { toast } = useToast();
-
+  const { user } = useUserContext();
   const { data: creators, isLoading, isError: isErrorCreators } = useGetUsers();
 
   if (isErrorCreators) {
     toast({ title: "Something went wrong." });
 
     return;
+  }
+  let filteredUsers: any = [];
+  if (creators?.documents != undefined) {
+    filteredUsers = creators?.documents.filter((users: any) => {
+      console.log("users", users);
+      return users.$id != user.id;
+    });
   }
 
   return (
@@ -21,7 +29,7 @@ const AllUsers = () => {
           <Loader />
         ) : (
           <ul className="user-grid">
-            {creators?.documents.map((creator) => (
+            {filteredUsers.map((creator: any) => (
               <li key={creator?.$id} className="flex-1 min-w-[200px] w-full  ">
                 <UserCard user={creator} />
               </li>

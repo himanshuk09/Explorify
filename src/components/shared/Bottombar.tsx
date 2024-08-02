@@ -12,7 +12,7 @@ const Bottombar = () => {
         return (
           <>
             <Link
-              key={`bottombar-${link?.label}`}
+              key={`bottombar-${link.label}`}
               to={link?.route}
               className={`${link?.className} ${
                 isActive && "rounded-[10px] bg-primary-500 "

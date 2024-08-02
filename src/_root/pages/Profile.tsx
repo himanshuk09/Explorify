@@ -12,6 +12,7 @@ import { LikedPosts } from "@/_root/pages";
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserById } from "@/lib/react-query/queries";
 import { GridPostList, Loader } from "@/components/shared";
+import { useEffect, useState } from "react";
 
 interface StabBlockProps {
   value: string | number;
@@ -31,7 +32,10 @@ const Profile = () => {
   const { pathname } = useLocation();
 
   const { data: currentUser } = useGetUserById(id || "");
-
+  const [follow, setFollow] = useState(true);
+  useEffect(() => {
+    setFollow(true);
+  }, []);
   if (!currentUser)
     return (
       <div className="flex-center w-full h-full">
@@ -92,8 +96,9 @@ const Profile = () => {
             <div className={`${user?.id === id && "hidden"}`}>
               <Button
                 type="button"
-                className="shad-button_primary px-8 focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
-                Follow
+                onClick={() => setFollow(!follow)}
+                className="shad-button_primary px-8 focus:ring-4 shadow-lg transform active:scale-75 transition-transform animate-pulse">
+                {follow ? "Follow" : "Following"}
               </Button>
             </div>
           </div>
