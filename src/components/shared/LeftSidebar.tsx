@@ -59,7 +59,7 @@ const LeftSidebar = () => {
         ) : (
           <Link
             to={`/profile/${user.id}`}
-            className="flex gap-3 items-center dj-profile">
+            className="flex gap-3 items-center dj-profile-desktop">
             <img
               src={user?.imageUrl || "/assets/icons/profile-placeholder.svg"}
               alt="profile"

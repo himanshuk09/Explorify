@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useSignOutAccount } from "@/lib/react-query/queries";
 import { driverObj_mini } from "@/driver/driver";
+import { mobile_driver } from "@/driver/mobile-drive";
 
 const Topbar = () => {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ const Topbar = () => {
               src="/assets/icons/intro.svg"
               className="cursor-pointer "
               alt="logo"
-              onClick={() => driverObj_mini.drive()}
+              onClick={() => mobile_driver.drive()}
               onMouseEnter={() => setDriverShowTooltip(true)}
               onMouseLeave={() => setDriverShowTooltip(false)}
             />

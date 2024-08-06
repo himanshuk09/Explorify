@@ -3,8 +3,8 @@ import { Models } from "appwrite";
 // import { useToast } from "@/components/ui/use-toast";
 import { Loader, PostCard, UserCard } from "@/components/shared";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queries";
-import { driverObj } from "@/driver/driver";
 import { useState } from "react";
+import { desktop_drive } from "@/driver/desktop-drive";
 const Home = () => {
   // const { toast } = useToast();
   const [modeLogo, setModeLogo] = useState(true);
@@ -114,7 +114,7 @@ const Home = () => {
                 src="/assets/icons/intro.svg"
                 className="cursor-pointer "
                 alt="logo"
-                onClick={() => driverObj.drive()}
+                onClick={() => desktop_drive.drive()}
                 onMouseEnter={() => setDriverShowTooltip(true)}
                 onMouseLeave={() => setDriverShowTooltip(false)}
               />
