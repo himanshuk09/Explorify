@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { useSignOutAccount } from "@/lib/react-query/queries";
-import { driverObj_mini } from "@/driver/driver";
+
 import { mobile_driver } from "@/driver/mobile-drive";
 
 const Topbar = () => {
