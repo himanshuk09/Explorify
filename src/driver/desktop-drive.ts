@@ -232,7 +232,7 @@ const post = [
     },
   },
   {
-    element: ".dj-logout-link",
+    element: ".dj-logout-link_des",
     popover: {
       title: "Logout",
       description: "By Clicking on it you can logout.",
@@ -245,7 +245,7 @@ const post = [
 const steps = [...home, ...explore, ...people, ...saved, ...post];
 
 export const desktop_drive = driver({
-  showProgress: true,
+  showProgress: false,
   overlayColor: "gray",
   popoverClass: "driverjs-theme",
   steps: <DriveStep[]>steps,

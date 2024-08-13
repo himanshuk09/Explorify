@@ -133,7 +133,7 @@ const Topbar = () => {
           </div>
           <Link
             to={`/profile/${user.id}`}
-            className="flex-center gap-3 dj-profile">
+            className="flex-center gap-3 dj-profile-mob">
             <img
               src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
               alt="profile"

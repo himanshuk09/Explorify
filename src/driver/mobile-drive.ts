@@ -10,7 +10,7 @@ const home_mini = [
     },
   },
   {
-    element: ".dj-profile",
+    element: ".dj-profile-mob",
     popover: {
       title: "Profile",
       description: "Here you can see you details.",
