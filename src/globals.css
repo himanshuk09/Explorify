@@ -133,8 +133,23 @@
     @apply max-w-5xl flex flex-col items-center w-full gap-6 md:gap-9;
   }
 
+  /* .explore-search {
+    @apply h-12  text-white border-none placeholder:text-gray-500  dark:bg-dark-4 dark:placeholder:text-light-4 focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 !important;
+  } */
+
   .explore-search {
-    @apply h-12 bg-gray-100 border-none placeholder:text-gray-500 dark:bg-dark-4 dark:placeholder:text-light-4 focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 !important;
+    @apply h-12 text-white border-none placeholder:text-gray-500 focus-visible:ring-0 focus-visible:ring-offset-0 ring-offset-0 !important;
+
+    /* Light mode styles */
+    @apply bg-white placeholder:text-gray-500;
+
+    /* Dark mode styles */
+    @apply dark:bg-dark-4 dark:placeholder:text-light-4;
+  }
+
+  /* Customize the text color based on the mode */
+  .explore-search {
+    @apply text-black dark:text-white;
   }
 
   /* Home */
@@ -180,10 +195,21 @@
     @apply flex items-center md:mb-8 xl:items-start gap-8 flex-col xl:flex-row relative max-w-5xl w-full;
   }
 
-  .profile-tab {
+  /* .profile-tab {
     @apply flex-center gap-3 py-4 w-48 bg-gray-200 transition flex-1 xl:flex-initial dark:bg-dark-2;
-  }
+  } */
+  .profile-tab {
+    @apply flex-center gap-3 py-4 w-48 transition flex-1 xl:flex-initial;
 
+    /* Light mode background */
+    @apply bg-gray-200;
+
+    /* Dark mode background */
+    @apply dark:bg-dark-2;
+
+    /* Customize the text color based on the mode */
+    @apply text-black dark:text-white;
+  }
   /* Saved */
   .saved-container {
     @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
